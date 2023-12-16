@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>27</x>
+      <y>27</y>
+      <w>225</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>AddressBook
+--
+- UserManager : userManager
+- ContactManager : contactManager
+--
++ AddressBook()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>27</y>
+      <w>189</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>User
+--
+- id : Integer
+- username : String
+- password : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>387</x>
+      <y>216</y>
+      <w>306</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>UserManager
+--
+- loggedUserId : Integer
+- users : vector &lt;User&gt;
+- usersFile : UsersFile
+--
++ UserManager()
++ registerUser() : void
++ loginUser() : void
++ showAllUsers() : void
++ changeLoggedUserPassword() : void
++ logoutUser() : void
+
+- enterNewUserData() : User
+- getNewUserId() : Integer
+- checkUsername() : Bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>216</y>
+      <w>288</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>ContactManager
+--
+- loggedUserId : Integer
+- contacts : vector &lt;Contact&gt;
+- contactsFile : ContactsFile
+--
++ ContactsFile()
++ addContact() : void
++ showAllContacts : void
++ clearContactsInMemory : void
+
+- enterNewContactData() : Contact</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>279</x>
+      <y>513</y>
+      <w>414</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>UsersFile
+--
+- usersFilename : String
+--
++ UsersFile()
++ writeNewUserInFile() : void
++ getUsersFromFile() : vector &lt;User&gt;
++ writeAllUsersInFile() : void
+
+- checkIfFileIsEmpty() : Bool
+- changeUserDataToLinesWithDataSeparatedVerticalDashes() : String
+- getUserData() : User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>27</x>
+      <y>288</y>
+      <w>225</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>AuxiliaryMethods
+--
+--
++ convertIntToString() : String
++ convertStringToInt() : Integer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>27</y>
+      <w>198</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>Contact
+--
+- id : Integer
+- userId : Integer
+- name : String
+- surname : String
+- phoneNumber : String
+- email : String
+- address : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>513</y>
+      <w>432</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>ContactsFile
+--
+- contactsFilename : String
+- lastContactId : Integer
+--
++ writeNewContactInFile() : void
++ getContactsFromFile() : vector &lt;Contact&gt;
+
+- checkIfFileIsEmpty() : Bool
+- changeContactDataToLinesWithDataSeparatedVerticalDashes() : String
+- getNumber() : String
+- getContactData() : Contact
+- getUserIdFromDataSeparatedVerticalDashes : Integer
+- getContactIdFromDataSeparatedVerticalDashes : Integer</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
