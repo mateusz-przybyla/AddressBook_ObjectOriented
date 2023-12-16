@@ -123,12 +123,12 @@ void UserManager::logoutUser()
 void UserManager::changeLoggedUserPassword()
 {
     string newPassword = "";
-    cout << "Enter new password: ";
+    cout << endl << "Enter new password: ";
     cin >> newPassword;
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
     {
-        if (itr -> getId() == loggedUserId)
+        if (itr -> getId() == getLoggedUserId())
         {
             itr -> setPassword(newPassword);
             cout << "Password was changed." << endl << endl;
