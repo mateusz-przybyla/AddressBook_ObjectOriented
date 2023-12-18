@@ -1,14 +1,18 @@
 #include "ContactManager.h"
 
+//setter and getter
+
 void ContactManager::setLoggedUserId(int newLoggedUserId)
 {
     loggedUserId = newLoggedUserId;
 }
 
-void ContactManager::getLastContactId()
+int ContactManager::getLoggedUserId()
 {
-    lastContactId = contactsFile.getLastContactId();
+    return loggedUserId;
 }
+
+//methods
 
 void ContactManager::addContact()
 {
@@ -25,9 +29,11 @@ void ContactManager::addContact()
 Contact ContactManager::enterNewContactData()
 {
     Contact contact;
-    string firstName, surname, phoneNumber, email, address;
+    string firstName = "", surname = "", phoneNumber = "", email = "", address = "";
 
-    contact.setId(++lastContactId);
+    contact.setId(contactsFile.getLastContactId() + 1);
+    contactsFile.setLastContactId(contact.getId());
+
     contact.setUserId(loggedUserId);
 
     cout << "Enter first name: ";
@@ -85,7 +91,7 @@ void ContactManager::clearContactsInMemory()
     contacts.clear();
 }
 
-void ContactManager::getContactsFromFile(int loggedUserId)
+void ContactManager::loadContactsFromFile()
 {
-    contacts = contactsFile.getContactsFromFile(loggedUserId);
+    contacts = contactsFile.loadContactsFromFile(getLoggedUserId());
 }

@@ -14,10 +14,11 @@ class AddressBook
     ContactManager contactManager;
 
 public:
-    AddressBook(string usersFilename, string contactsFilename) : userManager(usersFilename), contactManager(contactsFilename)
+    AddressBook(string USERSFILENAME, string CONTACTSFILENAME) : userManager(USERSFILENAME), contactManager(CONTACTSFILENAME)
     {
-        userManager.getUsersFromFile();
+        userManager.loadUsersFromFile();
     }
+
     void registerUser();
     void loginUser();
     void logoutUser();

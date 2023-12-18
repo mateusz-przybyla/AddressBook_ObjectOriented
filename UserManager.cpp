@@ -1,5 +1,7 @@
 #include "UserManager.h"
 
+//setter and getter
+
 void UserManager::setLoggedUserId(int newLoggedUserId)
 {
     loggedUserId = newLoggedUserId;
@@ -9,6 +11,8 @@ int UserManager::getLoggedUserId()
 {
     return loggedUserId;
 }
+
+//methods
 
 void UserManager::registerUser()
 {
@@ -34,9 +38,9 @@ void UserManager::showAllUsers()
 User UserManager::enterNewUserData()
 {
     User user;
-    string username, password;
+    string username = "", password = "";
 
-    user.setId(getNewUserId());
+    user.setId(readNewUserId());
 
     do
     {
@@ -52,7 +56,7 @@ User UserManager::enterNewUserData()
     return user;
 }
 
-int UserManager::getNewUserId()
+int UserManager::readNewUserId()
 {
     if (users.empty())
         return 1;
@@ -73,9 +77,9 @@ bool UserManager::checkUsername(string username)
     return false;
 }
 
-void UserManager::getUsersFromFile()
+void UserManager::loadUsersFromFile()
 {
-    users = usersFile.getUsersFromFile();
+    users = usersFile.loadUsersFromFile();
 }
 
 void UserManager::loginUser()
@@ -83,7 +87,7 @@ void UserManager::loginUser()
     User user;
     string enteredName = "", enteredPassword = "";
 
-    cout << endl << "Enter user name: ";
+    cout << endl << "Enter username: ";
     cin >> enteredName;
 
     vector <User>::iterator itr = users.begin();

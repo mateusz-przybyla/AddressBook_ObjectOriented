@@ -16,13 +16,13 @@ class UsersFile
 
     bool checkIfFileIsEmpty(fstream &textFile);
     string changeUserDataToLinesWithDataSeparatedVerticalDashes(User user);
-    User getUserData(string userDataSeparatedVerticalDashes);
+    User readUserData(string userDataSeparatedVerticalDashes);
 
 public:
     UsersFile(string USERSFILENAME) : usersFilename(USERSFILENAME) {};
 
     void writeNewUserInFile(User user);
-    vector <User> getUsersFromFile();
+    vector <User> loadUsersFromFile();
     void writeAllUsersInFile(vector <User> users);
 };
 

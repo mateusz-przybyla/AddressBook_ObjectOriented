@@ -47,7 +47,7 @@ string UsersFile::changeUserDataToLinesWithDataSeparatedVerticalDashes(User user
     return userDataLine;
 }
 
-vector <User> UsersFile::getUsersFromFile()
+vector <User> UsersFile::loadUsersFromFile()
 {
     User user;
     vector <User> users;
@@ -59,7 +59,7 @@ vector <User> UsersFile::getUsersFromFile()
     {
         while (getline(textFile, userDataSeparatedVerticalDashes))
         {
-            user = getUserData(userDataSeparatedVerticalDashes);
+            user = readUserData(userDataSeparatedVerticalDashes);
             users.push_back(user);
         }
     }
@@ -67,7 +67,7 @@ vector <User> UsersFile::getUsersFromFile()
     return users;
 }
 
-User UsersFile::getUserData(string userDataSeparatedVerticalDashes)
+User UsersFile::readUserData(string userDataSeparatedVerticalDashes)
 {
     User user;
     string singleUserData = "";

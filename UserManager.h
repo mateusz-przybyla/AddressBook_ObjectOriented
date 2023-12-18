@@ -17,17 +17,18 @@ class UserManager
     UsersFile usersFile;
 
     User enterNewUserData();
-    int getNewUserId();
+    int readNewUserId();
     bool checkUsername(string username);
 
 public:
-    UserManager(string usersFilename) : usersFile(usersFilename) {};
+    UserManager(string USERSFILENAME) : usersFile(USERSFILENAME) {};
+
     void registerUser();
     void showAllUsers();
     void loginUser();
     void logoutUser();
     void changeLoggedUserPassword();
-    void getUsersFromFile();
+    void loadUsersFromFile();
 
     void setLoggedUserId(int newLoggedUserId);
     int getLoggedUserId();

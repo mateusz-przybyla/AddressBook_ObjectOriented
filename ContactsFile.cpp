@@ -1,5 +1,7 @@
 #include "ContactsFile.h"
 
+//setter and getter
+
 void ContactsFile::setLastContactId(int newLastContactId)
 {
     lastContactId = newLastContactId;
@@ -9,6 +11,8 @@ int ContactsFile::getLastContactId()
 {
     return lastContactId;
 }
+
+//methods
 
 void ContactsFile::writeNewContactInFile(Contact contact)
 {
@@ -61,7 +65,7 @@ string ContactsFile::changeContactDataToLinesWithDataSeparatedVerticalDashes(Con
     return contactDataLine;
 }
 
-vector <Contact> ContactsFile::getContactsFromFile(int loggedUserId)
+vector <Contact> ContactsFile::loadContactsFromFile(int loggedUserId)
 {
     Contact contact;
     vector <Contact> contacts;
@@ -74,9 +78,9 @@ vector <Contact> ContactsFile::getContactsFromFile(int loggedUserId)
     {
         while (getline(textFile, contactDataSeparatedVerticalDashes))
         {
-            if(loggedUserId == getUserIdFromDataSeparatedVerticalDashes(contactDataSeparatedVerticalDashes))
+            if (loggedUserId == readUserIdFromDataSeparatedVerticalDashes(contactDataSeparatedVerticalDashes))
             {
-                contact = getContactData(contactDataSeparatedVerticalDashes);
+                contact = readContactData(contactDataSeparatedVerticalDashes);
                 contacts.push_back(contact);
             }
         }
@@ -89,12 +93,12 @@ vector <Contact> ContactsFile::getContactsFromFile(int loggedUserId)
 
     if (lastContactDataInFile != "")
     {
-        setLastContactId(getContactIdFromDataSeparatedVerticalDashes(lastContactDataInFile));
+        setLastContactId(readContactIdFromDataSeparatedVerticalDashes(lastContactDataInFile));
     }
     return contacts;
 }
 
-Contact ContactsFile::getContactData(string contactDataSeparatedVerticalDashes)
+Contact ContactsFile::readContactData(string contactDataSeparatedVerticalDashes)
 {
     Contact contact;
     string singleContactData = "";
@@ -139,23 +143,23 @@ Contact ContactsFile::getContactData(string contactDataSeparatedVerticalDashes)
     return contact;
 }
 
-int ContactsFile::getUserIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes)
+int ContactsFile::readUserIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes)
 {
     int beginingPositionOfUserId = contactDataSeparatedVerticalDashes.find_first_of('|') + 1;
-    int userId = AuxiliaryMethods::convertStringNaInt(getNumber(contactDataSeparatedVerticalDashes, beginingPositionOfUserId));
+    int userId = AuxiliaryMethods::convertStringNaInt(readNumber(contactDataSeparatedVerticalDashes, beginingPositionOfUserId));
 
     return userId;
 }
 
-int ContactsFile::getContactIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes)
+int ContactsFile::readContactIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes)
 {
     int beginingPositionOfContactId = 0;
-    int contactId = AuxiliaryMethods::convertStringNaInt(getNumber(contactDataSeparatedVerticalDashes, beginingPositionOfContactId));
+    int contactId = AuxiliaryMethods::convertStringNaInt(readNumber(contactDataSeparatedVerticalDashes, beginingPositionOfContactId));
 
     return contactId;
 }
 
-string ContactsFile::getNumber(string text, int signPosition)
+string ContactsFile::readNumber(string text, int signPosition)
 {
     string number = "";
     while (isdigit(text[signPosition]))

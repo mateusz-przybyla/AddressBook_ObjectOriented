@@ -9,8 +9,7 @@ void AddressBook::loginUser()
 {
     userManager.loginUser();
     contactManager.setLoggedUserId(userManager.getLoggedUserId());
-    contactManager.getContactsFromFile(userManager.getLoggedUserId());
-    contactManager.getLastContactId();
+    contactManager.loadContactsFromFile();
 }
 
 void AddressBook::logoutUser()

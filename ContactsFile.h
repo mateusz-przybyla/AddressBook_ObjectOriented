@@ -13,20 +13,20 @@ using namespace std;
 class ContactsFile
 {
     int lastContactId;
-    string contactsFilename;
+    const string contactsFilename;
 
     bool checkIfFileIsEmpty(fstream &textFile);
     string changeContactDataToLinesWithDataSeparatedVerticalDashes(Contact contact);
-    Contact getContactData(string contactDataSeparatedVerticalDashes);
-    int getUserIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes);
-    int getContactIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes);
-    string getNumber(string text, int signPosition);
+    Contact readContactData(string contactDataSeparatedVerticalDashes);
+    int readUserIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes);
+    int readContactIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes);
+    string readNumber(string text, int signPosition);
 
 public:
     ContactsFile(string CONTACTSFILENAME) : contactsFilename(CONTACTSFILENAME) {};
 
     void writeNewContactInFile(Contact contact);
-    vector <Contact> getContactsFromFile(int loggedUserId);
+    vector <Contact> loadContactsFromFile(int loggedUserId);
 
     void setLastContactId(int newLastContactId);
     int getLastContactId();
