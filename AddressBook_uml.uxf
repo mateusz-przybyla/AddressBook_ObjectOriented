@@ -49,6 +49,7 @@
 - usersFile : UsersFile
 --
 + UserManager()
+
 + registerUser() : void
 + loginUser() : void
 + showAllUsers() : void
@@ -56,7 +57,7 @@
 + logoutUser() : void
 
 - enterNewUserData() : User
-- getNewUserId() : Integer
+- readNewUserId() : Integer
 - checkUsername() : Bool</panel_attributes>
     <additional_attributes/>
   </element>
@@ -74,7 +75,8 @@
 - contacts : vector &lt;Contact&gt;
 - contactsFile : ContactsFile
 --
-+ ContactsFile()
++ ContactsManager()
+
 + addContact() : void
 + showAllContacts : void
 + clearContactsInMemory : void
@@ -95,13 +97,14 @@
 - usersFilename : String
 --
 + UsersFile()
+
 + writeNewUserInFile() : void
-+ getUsersFromFile() : vector &lt;User&gt;
++ loadUsersFromFile() : vector &lt;User&gt;
 + writeAllUsersInFile() : void
 
 - checkIfFileIsEmpty() : Bool
 - changeUserDataToLinesWithDataSeparatedVerticalDashes() : String
-- getUserData() : User</panel_attributes>
+- readUserData() : User</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -151,15 +154,17 @@
 - contactsFilename : String
 - lastContactId : Integer
 --
++ ContactsFile()
+
 + writeNewContactInFile() : void
-+ getContactsFromFile() : vector &lt;Contact&gt;
++ loadContactsFromFile() : vector &lt;Contact&gt;
 
 - checkIfFileIsEmpty() : Bool
 - changeContactDataToLinesWithDataSeparatedVerticalDashes() : String
-- getNumber() : String
-- getContactData() : Contact
-- getUserIdFromDataSeparatedVerticalDashes : Integer
-- getContactIdFromDataSeparatedVerticalDashes : Integer</panel_attributes>
+- readNumber() : String
+- readContactData() : Contact
+- readUserIdFromDataSeparatedVerticalDashes : Integer
+- readContactIdFromDataSeparatedVerticalDashes : Integer</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
