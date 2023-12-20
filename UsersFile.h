@@ -12,14 +12,14 @@ using namespace std;
 
 class UsersFile
 {
-    const string usersFilename;
+    const string USERS_FILENAME;
 
     bool checkIfFileIsEmpty(fstream &textFile);
     string changeUserDataToLinesWithDataSeparatedVerticalDashes(User user);
     User readUserData(string userDataSeparatedVerticalDashes);
 
 public:
-    UsersFile(string USERSFILENAME) : usersFilename(USERSFILENAME) {};
+    UsersFile(string usersFilename) : USERS_FILENAME(usersFilename) {};
 
     void writeNewUserInFile(User user);
     vector <User> loadUsersFromFile();

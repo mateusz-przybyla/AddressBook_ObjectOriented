@@ -11,13 +11,20 @@ using namespace std;
 class AddressBook
 {
     UserManager userManager;
-    ContactManager contactManager;
+    ContactManager *contactManager;
+    const string CONTACTS_FILENAME;
 
 public:
-    AddressBook(string USERSFILENAME, string CONTACTSFILENAME) : userManager(USERSFILENAME), contactManager(CONTACTSFILENAME)
+    AddressBook(string usersFilename, string contactsFilename) : userManager(usersFilename), CONTACTS_FILENAME(contactsFilename)
     {
-        userManager.loadUsersFromFile();
-    }
+        contactManager = NULL;
+    };
+
+    ~AddressBook()
+    {
+        delete contactManager;
+        contactManager = NULL;
+    };
 
     void registerUser();
     void loginUser();
@@ -25,7 +32,7 @@ public:
     void showAllUsers();
     void addContact();
     void showAllContacts();
-    void changeLoggedUserPassword();
+    void changeLoggedInUserPassword();
 };
 
 #endif

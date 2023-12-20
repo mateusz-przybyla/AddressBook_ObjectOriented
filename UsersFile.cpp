@@ -4,7 +4,7 @@ void UsersFile::writeNewUserInFile(User user)
 {
     string userDataLine = "";
     fstream textFile;
-    textFile.open(usersFilename.c_str(), ios::app);
+    textFile.open(USERS_FILENAME.c_str(), ios::app);
 
     if (textFile.good())
     {
@@ -21,7 +21,7 @@ void UsersFile::writeNewUserInFile(User user)
     }
     else
     {
-        cout << "Failed to open a file " << usersFilename << " and write data." << endl;
+        cout << "Failed to open a file " << USERS_FILENAME << " and write data." << endl;
     }
     textFile.close();
 }
@@ -53,7 +53,7 @@ vector <User> UsersFile::loadUsersFromFile()
     vector <User> users;
     string userDataSeparatedVerticalDashes = "";
     fstream textFile;
-    textFile.open(usersFilename.c_str(), ios::in);
+    textFile.open(USERS_FILENAME.c_str(), ios::in);
 
     if (textFile.good())
     {
@@ -105,7 +105,7 @@ void UsersFile::writeAllUsersInFile(vector <User> users)
     string userDataLine = "";
     vector <User>::iterator itrEnd = --users.end();
     fstream textFile;
-    textFile.open(usersFilename.c_str(), ios::out);
+    textFile.open(USERS_FILENAME.c_str(), ios::out);
 
     if (textFile.good())
     {
@@ -126,7 +126,7 @@ void UsersFile::writeAllUsersInFile(vector <User> users)
     }
     else
     {
-        cout << "Failed to open a file " << usersFilename << endl;
+        cout << "Failed to open a file " << USERS_FILENAME << endl;
     }
     textFile.close();
 }

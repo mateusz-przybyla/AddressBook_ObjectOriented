@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,7 +11,9 @@ class AuxiliaryMethods
 {
 public:
     static string convertIntToString(int number);
-    static int convertStringNaInt(string number);
+    static int convertStringToInt(string number);
+    static string readLine();
+    static string replaceFirstLetterToUpperCaseAndOtherToLowerCase(string text);
 };
 
 #endif

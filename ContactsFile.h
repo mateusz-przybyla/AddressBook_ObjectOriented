@@ -12,8 +12,8 @@ using namespace std;
 
 class ContactsFile
 {
+    const string CONTACTS_FILENAME;
     int lastContactId;
-    const string contactsFilename;
 
     bool checkIfFileIsEmpty(fstream &textFile);
     string changeContactDataToLinesWithDataSeparatedVerticalDashes(Contact contact);
@@ -23,12 +23,13 @@ class ContactsFile
     string readNumber(string text, int signPosition);
 
 public:
-    ContactsFile(string CONTACTSFILENAME) : contactsFilename(CONTACTSFILENAME) {};
+    ContactsFile(string contactsFilename) : CONTACTS_FILENAME(contactsFilename) {
+        lastContactId = 0;
+    };
 
-    void writeNewContactInFile(Contact contact);
-    vector <Contact> loadContactsFromFile(int loggedUserId);
+    bool writeNewContactInFile(Contact contact);
+    vector <Contact> loadContactsFromFile(int loggedInUserId);
 
-    void setLastContactId(int newLastContactId);
     int getLastContactId();
 };
 

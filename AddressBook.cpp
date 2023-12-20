@@ -8,14 +8,17 @@ void AddressBook::registerUser()
 void AddressBook::loginUser()
 {
     userManager.loginUser();
-    contactManager.setLoggedUserId(userManager.getLoggedUserId());
-    contactManager.loadContactsFromFile();
+    if (userManager.checkIfUserLoggedIn())
+        {
+            contactManager = new ContactManager(CONTACTS_FILENAME, userManager.getLoggedInUserId());
+        }
 }
 
 void AddressBook::logoutUser()
 {
     userManager.logoutUser();
-    contactManager.clearContactsInMemory();
+    delete contactManager;
+    contactManager = NULL;
 }
 
 void AddressBook::showAllUsers()
@@ -25,15 +28,23 @@ void AddressBook::showAllUsers()
 
 void AddressBook::addContact()
 {
-    contactManager.addContact();
+    if (userManager.checkIfUserLoggedIn())
+    {
+        contactManager->addContact();
+    }
+    else
+    {
+        cout << "Log in before add new contact." << endl;
+        system("pause");
+    }
 }
 
 void AddressBook::showAllContacts()
 {
-    contactManager.showAllContacts();
+    contactManager->showAllContacts();
 }
 
-void AddressBook::changeLoggedUserPassword()
+void AddressBook::changeLoggedInUserPassword()
 {
-    userManager.changeLoggedUserPassword();
+    userManager.changeLoggedInUserPassword();
 }

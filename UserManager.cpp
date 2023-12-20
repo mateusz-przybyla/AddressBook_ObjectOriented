@@ -1,18 +1,9 @@
 #include "UserManager.h"
 
-//setter and getter
-
-void UserManager::setLoggedUserId(int newLoggedUserId)
+int UserManager::getLoggedInUserId()
 {
-    loggedUserId = newLoggedUserId;
+    return loggedInUserId;
 }
-
-int UserManager::getLoggedUserId()
-{
-    return loggedUserId;
-}
-
-//methods
 
 void UserManager::registerUser()
 {
@@ -45,12 +36,12 @@ User UserManager::enterNewUserData()
     do
     {
         cout << "Enter username: ";
-        cin >> username;
+        username = AuxiliaryMethods::readLine();
         user.setUsername(username);
     } while (checkUsername(user.getUsername()));
 
     cout << "Enter password: ";
-    cin >> password;
+    password = AuxiliaryMethods::readLine();
     user.setPassword(password);
 
     return user;
@@ -77,18 +68,13 @@ bool UserManager::checkUsername(string username)
     return false;
 }
 
-void UserManager::loadUsersFromFile()
-{
-    users = usersFile.loadUsersFromFile();
-}
-
 void UserManager::loginUser()
 {
     User user;
     string enteredName = "", enteredPassword = "";
 
     cout << endl << "Enter username: ";
-    cin >> enteredName;
+    enteredName = AuxiliaryMethods::readLine();
 
     vector <User>::iterator itr = users.begin();
     while (itr != users.end())
@@ -98,41 +84,41 @@ void UserManager::loginUser()
             for (int attempt = 3; attempt > 0; attempt--)
             {
                 cout << "Enter password. Attempts left: " << attempt << ": ";
-                cin >> enteredPassword;
+                enteredPassword = AuxiliaryMethods::readLine();
 
                 if (itr -> getPassword() == enteredPassword)
                 {
+                    loggedInUserId = itr -> getId();
                     cout << endl << "You logged in." << endl << endl;
                     system("pause");
-                    setLoggedUserId(itr -> getId());
                     return;
                 }
             }
             cout << "You have entered the wrong password 3 times." << endl;
             system("pause");
+            return;
         }
         itr++;
     }
     cout << "There is no user with that login." << endl << endl;
     system("pause");
+    return;
 }
 
 void UserManager::logoutUser()
 {
-    int zeroId = 0;
-
-    setLoggedUserId(zeroId);
+    loggedInUserId = 0;
 }
 
-void UserManager::changeLoggedUserPassword()
+void UserManager::changeLoggedInUserPassword()
 {
     string newPassword = "";
     cout << endl << "Enter new password: ";
-    cin >> newPassword;
+    newPassword = AuxiliaryMethods::readLine();
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
     {
-        if (itr -> getId() == getLoggedUserId())
+        if (itr -> getId() == getLoggedInUserId())
         {
             itr -> setPassword(newPassword);
             cout << "Password was changed." << endl << endl;
@@ -140,4 +126,12 @@ void UserManager::changeLoggedUserPassword()
         }
     }
     usersFile.writeAllUsersInFile(users);
+}
+
+bool UserManager::checkIfUserLoggedIn()
+{
+    if (loggedInUserId > 0)
+        return true;
+    else
+        return false;
 }

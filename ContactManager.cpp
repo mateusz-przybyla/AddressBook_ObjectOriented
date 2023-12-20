@@ -1,19 +1,5 @@
 #include "ContactManager.h"
 
-//setter and getter
-
-void ContactManager::setLoggedUserId(int newLoggedUserId)
-{
-    loggedUserId = newLoggedUserId;
-}
-
-int ContactManager::getLoggedUserId()
-{
-    return loggedUserId;
-}
-
-//methods
-
 void ContactManager::addContact()
 {
     Contact contact;
@@ -23,7 +9,11 @@ void ContactManager::addContact()
     contact = enterNewContactData();
 
     contacts.push_back(contact);
-    contactsFile.writeNewContactInFile(contact);
+    if (contactsFile.writeNewContactInFile(contact))
+        cout << endl << "New contact was added." << endl << endl;
+    else
+        cout << "Error. Failed to add new contact to file." << endl;
+    system("pause");
 }
 
 Contact ContactManager::enterNewContactData()
@@ -32,30 +22,28 @@ Contact ContactManager::enterNewContactData()
     string firstName = "", surname = "", phoneNumber = "", email = "", address = "";
 
     contact.setId(contactsFile.getLastContactId() + 1);
-    contactsFile.setLastContactId(contact.getId());
-
-    contact.setUserId(loggedUserId);
+    contact.setUserId(LOGGED_IN_USER_ID);
 
     cout << "Enter first name: ";
-    cin >> firstName;
+    firstName = AuxiliaryMethods::readLine();
+    firstName = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(firstName);
     contact.setFirstName(firstName);
-    //contact.firstName = zamienPierwszaLitereNaDuzaAPozostaleNaMale(contact.firstName);
 
     cout << "Enter surname: ";
-    cin >> surname;
+    surname = AuxiliaryMethods::readLine();
+    surname = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(surname);
     contact.setSurname(surname);
-    //contact.surname = zamienPierwszaLitereNaDuzaAPozostaleNaMale(contact.surname);
 
     cout << "Enter phone number: ";
-    cin >> phoneNumber;
+    phoneNumber = AuxiliaryMethods::readLine();
     contact.setPhoneNumber(phoneNumber);
 
     cout << "Enter email: ";
-    cin >> email;
+    email = AuxiliaryMethods::readLine();
     contact.setEmail(email);
 
     cout << "Enter address: ";
-    cin >> address;
+    address = AuxiliaryMethods::readLine();
     contact.setAddress(address);
 
     return contact;
@@ -84,14 +72,4 @@ void ContactManager::showAllContacts()
         cout << endl << "No contacts on the list." << endl << endl;
     }
     system("pause");
-}
-
-void ContactManager::clearContactsInMemory()
-{
-    contacts.clear();
-}
-
-void ContactManager::loadContactsFromFile()
-{
-    contacts = contactsFile.loadContactsFromFile(getLoggedUserId());
 }

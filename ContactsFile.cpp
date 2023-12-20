@@ -1,24 +1,15 @@
 #include "ContactsFile.h"
 
-//setter and getter
-
-void ContactsFile::setLastContactId(int newLastContactId)
-{
-    lastContactId = newLastContactId;
-}
-
 int ContactsFile::getLastContactId()
 {
     return lastContactId;
 }
 
-//methods
-
-void ContactsFile::writeNewContactInFile(Contact contact)
+bool ContactsFile::writeNewContactInFile(Contact contact)
 {
     string contactDataLine = "";
     fstream textFile;
-    textFile.open(contactsFilename.c_str(), ios::out | ios::app);
+    textFile.open(CONTACTS_FILENAME.c_str(), ios::out | ios::app);
 
     if (textFile.good())
     {
@@ -32,12 +23,11 @@ void ContactsFile::writeNewContactInFile(Contact contact)
         {
             textFile << endl << contactDataLine;
         }
+        lastContactId++;
+        textFile.close();
+        return true;
     }
-    else
-    {
-        cout << "Failed to open a file " << contactsFilename << " and write data." << endl;
-    }
-    textFile.close();
+    return false;
 }
 
 bool ContactsFile::checkIfFileIsEmpty(fstream &textFile)
@@ -65,35 +55,32 @@ string ContactsFile::changeContactDataToLinesWithDataSeparatedVerticalDashes(Con
     return contactDataLine;
 }
 
-vector <Contact> ContactsFile::loadContactsFromFile(int loggedUserId)
+vector <Contact> ContactsFile::loadContactsFromFile(int loggedInUserId)
 {
     Contact contact;
     vector <Contact> contacts;
     string contactDataSeparatedVerticalDashes = "";
     string lastContactDataInFile = "";
     fstream textFile;
-    textFile.open(contactsFilename.c_str(), ios::in);
+    textFile.open(CONTACTS_FILENAME.c_str(), ios::in);
 
     if (textFile.good())
     {
         while (getline(textFile, contactDataSeparatedVerticalDashes))
         {
-            if (loggedUserId == readUserIdFromDataSeparatedVerticalDashes(contactDataSeparatedVerticalDashes))
+            if (loggedInUserId == readUserIdFromDataSeparatedVerticalDashes(contactDataSeparatedVerticalDashes))
             {
                 contact = readContactData(contactDataSeparatedVerticalDashes);
                 contacts.push_back(contact);
             }
         }
         lastContactDataInFile = contactDataSeparatedVerticalDashes;
+        textFile.close();
     }
-    else
-        cout << "Failed to open a file and write data." << endl;
-
-    textFile.close();
 
     if (lastContactDataInFile != "")
     {
-        setLastContactId(readContactIdFromDataSeparatedVerticalDashes(lastContactDataInFile));
+        lastContactId = readContactIdFromDataSeparatedVerticalDashes(lastContactDataInFile);
     }
     return contacts;
 }
@@ -146,7 +133,7 @@ Contact ContactsFile::readContactData(string contactDataSeparatedVerticalDashes)
 int ContactsFile::readUserIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes)
 {
     int beginingPositionOfUserId = contactDataSeparatedVerticalDashes.find_first_of('|') + 1;
-    int userId = AuxiliaryMethods::convertStringNaInt(readNumber(contactDataSeparatedVerticalDashes, beginingPositionOfUserId));
+    int userId = AuxiliaryMethods::convertStringToInt(readNumber(contactDataSeparatedVerticalDashes, beginingPositionOfUserId));
 
     return userId;
 }
@@ -154,7 +141,7 @@ int ContactsFile::readUserIdFromDataSeparatedVerticalDashes(string contactDataSe
 int ContactsFile::readContactIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes)
 {
     int beginingPositionOfContactId = 0;
-    int contactId = AuxiliaryMethods::convertStringNaInt(readNumber(contactDataSeparatedVerticalDashes, beginingPositionOfContactId));
+    int contactId = AuxiliaryMethods::convertStringToInt(readNumber(contactDataSeparatedVerticalDashes, beginingPositionOfContactId));
 
     return contactId;
 }

@@ -12,7 +12,7 @@ using namespace std;
 
 class UserManager
 {
-    int loggedUserId;
+    int loggedInUserId;
     vector <User> users;
     UsersFile usersFile;
 
@@ -21,17 +21,20 @@ class UserManager
     bool checkUsername(string username);
 
 public:
-    UserManager(string USERSFILENAME) : usersFile(USERSFILENAME) {};
+    UserManager(string usersFilename) : usersFile(usersFilename)
+    {
+        loggedInUserId = 0;
+        users = usersFile.loadUsersFromFile();
+    };
 
     void registerUser();
     void showAllUsers();
     void loginUser();
     void logoutUser();
-    void changeLoggedUserPassword();
-    void loadUsersFromFile();
+    void changeLoggedInUserPassword();
+    bool checkIfUserLoggedIn();
 
-    void setLoggedUserId(int newLoggedUserId);
-    int getLoggedUserId();
+    int getLoggedInUserId();
 };
 
 #endif

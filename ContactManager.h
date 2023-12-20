@@ -11,22 +11,20 @@ using namespace std;
 
 class ContactManager
 {
-    int loggedUserId;
+    const int LOGGED_IN_USER_ID;
     vector <Contact> contacts;
     ContactsFile contactsFile;
 
     Contact enterNewContactData();
 
 public:
-    ContactManager(string CONTACTSFILENAME) : contactsFile(CONTACTSFILENAME) {};
+    ContactManager(string contactsFilename, int loggedInUserId) : contactsFile(contactsFilename), LOGGED_IN_USER_ID(loggedInUserId)
+    {
+        contacts = contactsFile.loadContactsFromFile(LOGGED_IN_USER_ID);
+    };
 
     void addContact();
     void showAllContacts();
-    void clearContactsInMemory();
-    void loadContactsFromFile();
-
-    void setLoggedUserId(int newLoggedUserId);
-    int getLoggedUserId();
 };
 
 #endif
