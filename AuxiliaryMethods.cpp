@@ -24,6 +24,25 @@ string AuxiliaryMethods::readLine()
     return input;
 }
 
+char AuxiliaryMethods::readChar()
+{
+    string input = "";
+    char character  = {0};
+
+    while (true)
+    {
+        getline(cin, input);
+
+        if (input.length() == 1)
+        {
+            character = input[0];
+            break;
+        }
+        cout << "This is not a single character. Type again: " << endl;
+    }
+    return character;
+}
+
 string AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(string text)
 {
     if (!text.empty())

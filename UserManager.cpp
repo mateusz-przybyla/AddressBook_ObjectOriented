@@ -1,10 +1,5 @@
 #include "UserManager.h"
 
-int UserManager::getLoggedInUserId()
-{
-    return loggedInUserId;
-}
-
 void UserManager::registerUser()
 {
     User user = enterNewUserData();
@@ -134,4 +129,9 @@ bool UserManager::checkIfUserLoggedIn()
         return true;
     else
         return false;
+}
+
+int UserManager::getLoggedInUserId()
+{
+    return loggedInUserId;
 }
