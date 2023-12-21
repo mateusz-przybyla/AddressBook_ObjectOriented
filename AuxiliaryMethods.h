@@ -13,6 +13,7 @@ public:
     static string convertIntToString(int number);
     static int convertStringToInt(string number);
     static string readLine();
+    static char readChar();
     static string replaceFirstLetterToUpperCaseAndOtherToLowerCase(string text);
 };
 

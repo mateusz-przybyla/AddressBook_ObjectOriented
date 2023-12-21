@@ -28,8 +28,8 @@ public:
     };
 
     void registerUser();
-    void showAllUsers();
     void loginUser();
+    void showAllUsers();
     void logoutUser();
     void changeLoggedInUserPassword();
     bool checkIfUserLoggedIn();

@@ -26,10 +26,13 @@ public:
         contactManager = NULL;
     };
 
+    bool checkIfUserLoggedIn();
+    char selectAnOptionFromMainMenu();
+    char selectAnOptionFromUserMenu();
     void registerUser();
     void loginUser();
-    void logoutUser();
     void showAllUsers();
+    void logoutUser();
     void addContact();
     void showAllContacts();
     void changeLoggedInUserPassword();

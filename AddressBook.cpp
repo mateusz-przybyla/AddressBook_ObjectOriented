@@ -1,5 +1,46 @@
 #include "AddressBook.h"
 
+bool AddressBook::checkIfUserLoggedIn()
+{
+    return userManager.checkIfUserLoggedIn();
+}
+
+char AddressBook::selectAnOptionFromMainMenu()
+{
+    char choice;
+
+    system("cls");
+    cout << "     >>> MAIN MENU <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Create an account" << endl;
+    cout << "2. Sign in" << endl;
+    cout << "9. Close app" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Your choice: ";
+    choice = AuxiliaryMethods::readChar();
+
+    return choice;
+}
+
+char AddressBook::selectAnOptionFromUserMenu()
+{
+    char choice;
+
+    system("cls");
+    cout << "     >>> USER MENU <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Add new contact" << endl;
+    cout << "4. Show all contacts" << endl;
+    cout << "---------------------------" << endl;
+    cout << "7. Change password" << endl;
+    cout << "8. Sign out" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Your choice: ";
+    choice = AuxiliaryMethods::readChar();
+
+    return choice;
+}
+
 void AddressBook::registerUser()
 {
     userManager.registerUser();
@@ -8,10 +49,15 @@ void AddressBook::registerUser()
 void AddressBook::loginUser()
 {
     userManager.loginUser();
-    if (userManager.checkIfUserLoggedIn())
+    if (checkIfUserLoggedIn())
         {
             contactManager = new ContactManager(CONTACTS_FILENAME, userManager.getLoggedInUserId());
         }
+}
+
+void AddressBook::showAllUsers()
+{
+    userManager.showAllUsers();
 }
 
 void AddressBook::logoutUser()
@@ -21,14 +67,9 @@ void AddressBook::logoutUser()
     contactManager = NULL;
 }
 
-void AddressBook::showAllUsers()
-{
-    userManager.showAllUsers();
-}
-
 void AddressBook::addContact()
 {
-    if (userManager.checkIfUserLoggedIn())
+    if (checkIfUserLoggedIn())
     {
         contactManager->addContact();
     }
