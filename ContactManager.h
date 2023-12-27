@@ -18,7 +18,7 @@ class ContactManager
     Contact enterNewContactData();
 
 public:
-    ContactManager(string contactsFilename, int loggedInUserId) : contactsFile(contactsFilename), LOGGED_IN_USER_ID(loggedInUserId)
+    ContactManager(string contactsFilename, int loggedInUserId) :  LOGGED_IN_USER_ID(loggedInUserId), contactsFile(contactsFilename)
     {
         contacts = contactsFile.loadContactsFromFile(LOGGED_IN_USER_ID);
     };

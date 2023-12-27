@@ -82,10 +82,26 @@ void AddressBook::addContact()
 
 void AddressBook::showAllContacts()
 {
-    contactManager->showAllContacts();
+    if (checkIfUserLoggedIn())
+    {
+        contactManager->showAllContacts();
+    }
+    else
+    {
+        cout << "Log in before show contacts." << endl;
+        system("pause");
+    }
 }
 
 void AddressBook::changeLoggedInUserPassword()
 {
-    userManager.changeLoggedInUserPassword();
+    if (checkIfUserLoggedIn())
+    {
+        userManager.changeLoggedInUserPassword();
+    }
+    else
+    {
+        cout << "Log in before change password." << endl;
+        system("pause");
+    }
 }
