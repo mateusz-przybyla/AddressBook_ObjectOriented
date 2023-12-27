@@ -31,6 +31,7 @@ char AddressBook::selectAnOptionFromUserMenu()
     cout << "---------------------------" << endl;
     cout << "1. Add new contact" << endl;
     cout << "2. Search by first name" << endl;
+    cout << "3. Search by surname" << endl;
     cout << "4. Show all contacts" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Change password" << endl;
@@ -86,6 +87,19 @@ void AddressBook::searchByFirstName()
     if (checkIfUserLoggedIn())
     {
         contactManager->searchByFirstName();
+    }
+    else
+    {
+        cout << "Log in before show contacts." << endl;
+        system("pause");
+    }
+}
+
+void AddressBook::searchBySurname()
+{
+    if (checkIfUserLoggedIn())
+    {
+        contactManager->searchBySurname();
     }
     else
     {

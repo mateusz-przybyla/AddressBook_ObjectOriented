@@ -99,6 +99,38 @@ void ContactManager::searchByFirstName()
     system("pause");
 }
 
+void ContactManager::searchBySurname()
+{
+    string surnameToFind = "";
+    int numberOfContacts = 0;
+
+    system("cls");
+    if (!contacts.empty())
+    {
+        cout << ">>> SEARCH BY SURNAME <<<" << endl << endl;
+
+        cout << "Search contacts by surname: ";
+        surnameToFind = AuxiliaryMethods::readLine();
+        surnameToFind = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(surnameToFind);
+
+        for (vector <Contact>::iterator  itr = contacts.begin(); itr != contacts.end(); itr++)
+        {
+            if (itr -> getSurname() == surnameToFind)
+            {
+                showContactData(*itr);
+                numberOfContacts++;
+            }
+        }
+        showNumberOfSearchedContacts(numberOfContacts);
+    }
+    else
+    {
+        cout << endl << "Address Book is empty." << endl << endl;
+    }
+    cout << endl;
+    system("pause");
+}
+
 void ContactManager::showAllContacts()
 {
     system("cls");
