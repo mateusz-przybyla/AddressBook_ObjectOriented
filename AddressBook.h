@@ -37,6 +37,7 @@ public:
     void searchByFirstName();
     void searchBySurname();
     void showAllContacts();
+    void editContact();
     void changeLoggedInUserPassword();
 };
 

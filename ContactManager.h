@@ -18,6 +18,7 @@ class ContactManager
     Contact enterNewContactData();
     void showNumberOfSearchedContacts(int numberOfContacts);
     void showContactData(Contact contact);
+    char selectAnOptionFromEditMenu();
 
 public:
     ContactManager(string contactsFilename, int loggedInUserId) :  LOGGED_IN_USER_ID(loggedInUserId), contactsFile(contactsFilename)
@@ -29,6 +30,7 @@ public:
     void searchByFirstName();
     void searchBySurname();
     void showAllContacts();
+    void editContact();
 };
 
 #endif

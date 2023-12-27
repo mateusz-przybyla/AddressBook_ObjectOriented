@@ -150,3 +150,93 @@ void ContactManager::showAllContacts()
     }
     system("pause");
 }
+
+int enterSelectedContactId()
+{
+    int idOfSelectedContact = 0;
+    cout << "Podaj numer ID Adresata: ";
+    idOfSelectedContact  = AuxiliaryMethods::readInteger();
+    return idOfSelectedContact;
+}
+
+char ContactManager::selectAnOptionFromEditMenu()
+{
+    char choice;
+
+    cout << endl << "   >>> EDIT MENU <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Contact details for editing: " << endl;
+    cout << "1 - First name" << endl;
+    cout << "2 - Surname" << endl;
+    cout << "3 - Phone number" << endl;
+    cout << "4 - Email" << endl;
+    cout << "5 - Address" << endl;
+    cout << "6 - Go to user menu" << endl;
+    cout << endl << "Your choice: ";
+    choice = AuxiliaryMethods::readChar();
+
+    return choice;
+}
+
+void ContactManager::editContact()
+{
+    system("cls");
+    int contactIdToBeEdited = 0;
+
+    cout << ">>> EDITING SELECTED CONTACT <<<" << endl << endl;
+    contactIdToBeEdited = enterSelectedContactId();
+
+    char choice;
+    bool contactFound = false;
+
+    for (size_t i = 0; i < contacts.size(); i++)
+    {
+        if (contacts[i].getId() == contactIdToBeEdited)
+        {
+            contactFound = true;
+            choice = selectAnOptionFromEditMenu();
+
+            switch (choice)
+            {
+            case '1':
+                cout << "Enter new first name: ";
+                contacts[i].setFirstName(AuxiliaryMethods::readLine());
+                contacts[i].getFirstName() = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(contacts[i].getFirstName());
+                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                break;
+            case '2':
+                cout << "Enter new surname: ";
+                contacts[i].setSurname(AuxiliaryMethods::readLine());
+                contacts[i].getSurname() = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(contacts[i].getSurname());
+                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                break;
+            case '3':
+                cout << "Enter new phone number: ";
+                contacts[i].setPhoneNumber(AuxiliaryMethods::readLine());
+                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                break;
+            case '4':
+                cout << "Enter new email: ";
+                contacts[i].setEmail(AuxiliaryMethods::readLine());
+                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                break;
+            case '5':
+                cout << "Enter new address: ";
+                contacts[i].setAddress(AuxiliaryMethods::readLine());
+                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                break;
+            case '6':
+                cout << endl << "Back to user menu." << endl << endl;
+                break;
+            default:
+                cout << endl << "There is no such option! Back to user menu." << endl << endl;
+                break;
+            }
+        }
+    }
+    if (contactFound == false)
+    {
+        cout << endl << "No contact with that ID on the list." << endl << endl;
+    }
+    system("pause");
+}
