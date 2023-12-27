@@ -49,6 +49,88 @@ Contact ContactManager::enterNewContactData()
     return contact;
 }
 
+void ContactManager::showNumberOfSearchedContacts(int numberOfContacts)
+{
+    if (numberOfContacts == 0)
+        cout << endl << "There are no contacts with indicated data." << endl;
+    else
+        cout << endl << "Number of searched contacts in Address Book: " << numberOfContacts << endl << endl;
+}
+
+void ContactManager::showContactData(Contact contact)
+{
+    cout << endl << "Id:               " << contact.getId() << endl;
+    cout << "First name:       " << contact.getFirstName() << endl;
+    cout << "Surname:          " << contact.getSurname() << endl;
+    cout << "Phone number:     " << contact.getPhoneNumber() << endl;
+    cout << "Email:            " << contact.getEmail() << endl;
+    cout << "Address:          " << contact.getAddress() << endl;
+}
+
+void ContactManager::searchByFirstName()
+{
+    string firstNameToFind = "";
+    int numberOfContacts = 0;
+
+    system("cls");
+    if (!contacts.empty())
+    {
+        cout << ">>> SEARCH BY FIRST NAME <<<" << endl << endl;
+
+        cout << "Search contacts by first name: ";
+        firstNameToFind = AuxiliaryMethods::readLine();
+        firstNameToFind = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(firstNameToFind);
+
+        for (vector <Contact>::iterator  itr = contacts.begin(); itr != contacts.end(); itr++)
+        {
+            if (itr -> getFirstName() == firstNameToFind)
+            {
+                showContactData(*itr);
+                numberOfContacts++;
+            }
+        }
+        showNumberOfSearchedContacts(numberOfContacts);
+    }
+    else
+    {
+        cout << endl << "Address Book is empty." << endl << endl;
+    }
+    cout << endl;
+    system("pause");
+}
+
+void ContactManager::searchBySurname()
+{
+    string surnameToFind = "";
+    int numberOfContacts = 0;
+
+    system("cls");
+    if (!contacts.empty())
+    {
+        cout << ">>> SEARCH BY SURNAME <<<" << endl << endl;
+
+        cout << "Search contacts by surname: ";
+        surnameToFind = AuxiliaryMethods::readLine();
+        surnameToFind = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(surnameToFind);
+
+        for (vector <Contact>::iterator  itr = contacts.begin(); itr != contacts.end(); itr++)
+        {
+            if (itr -> getSurname() == surnameToFind)
+            {
+                showContactData(*itr);
+                numberOfContacts++;
+            }
+        }
+        showNumberOfSearchedContacts(numberOfContacts);
+    }
+    else
+    {
+        cout << endl << "Address Book is empty." << endl << endl;
+    }
+    cout << endl;
+    system("pause");
+}
+
 void ContactManager::showAllContacts()
 {
     system("cls");
@@ -56,14 +138,9 @@ void ContactManager::showAllContacts()
     {
         cout << "             >>> CONTACTS <<<" << endl;
         cout << "-----------------------------------------------" << endl;
-        for (size_t i = 0; i < contacts.size(); i++)
+        for (vector <Contact> :: iterator itr = contacts.begin(); itr != contacts.end(); itr++)
         {
-            cout << endl << "Id:               " << contacts[i].getId() << endl;
-            cout << "First name:       " << contacts[i].getFirstName() << endl;
-            cout << "Surname:          " << contacts[i].getSurname() << endl;
-            cout << "Phone number:     " << contacts[i].getPhoneNumber() << endl;
-            cout << "Email:            " << contacts[i].getEmail() << endl;
-            cout << "Address:          " << contacts[i].getAddress() << endl;
+            showContactData(*itr);
         }
         cout << endl;
     }
