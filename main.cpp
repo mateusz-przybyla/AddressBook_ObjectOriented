@@ -33,6 +33,7 @@ int main()
             switch (choice)
             {
             case '1': addressBook.addContact(); break;
+            case '2': addressBook.searchByFirstName(); break;
             case '4': addressBook.showAllContacts(); break;
             case '7': addressBook.changeLoggedInUserPassword(); break;
             case '8': addressBook.logoutUser(); break;

@@ -34,6 +34,7 @@ public:
     void showAllUsers();
     void logoutUser();
     void addContact();
+    void searchByFirstName();
     void showAllContacts();
     void changeLoggedInUserPassword();
 };

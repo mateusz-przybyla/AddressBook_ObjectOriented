@@ -24,6 +24,9 @@ public:
     };
 
     void addContact();
+    void showNumberOfSearchedContacts(int numberOfContacts);
+    void showContactData(Contact contact);
+    void searchByFirstName();
     void showAllContacts();
 };
 
