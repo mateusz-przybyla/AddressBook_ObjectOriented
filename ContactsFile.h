@@ -7,15 +7,14 @@
 
 #include "Contact.h"
 #include "AuxiliaryMethods.h"
+#include "TextFile.h"
 
 using namespace std;
 
-class ContactsFile
+class ContactsFile : public TextFile
 {
-    const string CONTACTS_FILENAME;
     int lastContactId;
 
-    bool checkIfFileIsEmpty(fstream &textFile);
     string changeContactDataToLinesWithDataSeparatedVerticalDashes(Contact contact);
     Contact readContactData(string contactDataSeparatedVerticalDashes);
     int readUserIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes);
@@ -26,7 +25,7 @@ class ContactsFile
     void renameFile(string oldName, string newName);
 
 public:
-    ContactsFile(string contactsFilename) : CONTACTS_FILENAME(contactsFilename)
+    ContactsFile(string contactsFilename) : TextFile(contactsFilename)
     {
         lastContactId = 0;
     };

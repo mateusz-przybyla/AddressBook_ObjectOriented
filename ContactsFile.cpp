@@ -9,13 +9,13 @@ bool ContactsFile::writeNewContactInFile(Contact contact)
 {
     string contactDataLine = "";
     fstream textFile;
-    textFile.open(CONTACTS_FILENAME.c_str(), ios::out | ios::app);
+    textFile.open(getFilename().c_str(), ios::out | ios::app);
 
     if (textFile.good())
     {
         contactDataLine = changeContactDataToLinesWithDataSeparatedVerticalDashes(contact);
 
-        if (checkIfFileIsEmpty(textFile))
+        if (TextFile::checkIfFileIsEmpty(textFile))
         {
             textFile << contactDataLine;
         }
@@ -28,16 +28,6 @@ bool ContactsFile::writeNewContactInFile(Contact contact)
         return true;
     }
     return false;
-}
-
-bool ContactsFile::checkIfFileIsEmpty(fstream &textFile)
-{
-    textFile.seekg(0, ios::end);
-
-    if (textFile.tellg() == 0)
-        return true;
-    else
-        return false;
 }
 
 string ContactsFile::changeContactDataToLinesWithDataSeparatedVerticalDashes(Contact contact)
@@ -62,7 +52,7 @@ vector <Contact> ContactsFile::loadContactsFromFile(int loggedInUserId)
     string contactDataSeparatedVerticalDashes = "";
     string lastContactDataInFile = "";
     fstream textFile;
-    textFile.open(CONTACTS_FILENAME.c_str(), ios::in);
+    textFile.open(getFilename().c_str(), ios::in);
 
     if (textFile.good())
     {
@@ -163,7 +153,7 @@ void ContactsFile::deleteSelectedLineInFile(int contactIdToBeDeleted)
     string readLine = "", nameOfContactsTempFile = "contacts_temp.txt";
     int numberOfReadLine = 1;
 
-    readTextFile.open(CONTACTS_FILENAME.c_str(), ios::in);
+    readTextFile.open(getFilename().c_str(), ios::in);
     tempTextFile.open(nameOfContactsTempFile.c_str(), ios::out | ios::app);
 
     if (readTextFile.good() && contactIdToBeDeleted != 0)
@@ -184,8 +174,8 @@ void ContactsFile::deleteSelectedLineInFile(int contactIdToBeDeleted)
         readTextFile.close();
         tempTextFile.close();
 
-        deleteFile(CONTACTS_FILENAME);
-        renameFile(nameOfContactsTempFile, CONTACTS_FILENAME);
+        deleteFile(getFilename());
+        renameFile(nameOfContactsTempFile, getFilename());
     }
 
     if (contactIdToBeDeleted == lastContactId)
@@ -197,7 +187,7 @@ void ContactsFile::readLastContactIdFromFile()
     string contactDataSeparatedVerticalDashes = "";
     string lastContactDataInFile = "";
     fstream textFile;
-    textFile.open(CONTACTS_FILENAME.c_str(), ios::in);
+    textFile.open(getFilename().c_str(), ios::in);
 
     if (textFile.good())
     {
@@ -218,7 +208,7 @@ void ContactsFile::updateContactDataInFile(Contact contact)
     string readLine  = "", nameOfContactsTempFile = "contacts_temp.txt";
     int numberOfReadLine = 1;
 
-    readTextFile.open(CONTACTS_FILENAME.c_str(), ios::in);
+    readTextFile.open(getFilename().c_str(), ios::in);
     tempTextFile.open(nameOfContactsTempFile.c_str(), ios::out | ios::app);
 
     if (readTextFile.good())
@@ -246,8 +236,8 @@ void ContactsFile::updateContactDataInFile(Contact contact)
         readTextFile.close();
         tempTextFile.close();
 
-        deleteFile(CONTACTS_FILENAME);
-        renameFile(nameOfContactsTempFile, CONTACTS_FILENAME);
+        deleteFile(getFilename());
+        renameFile(nameOfContactsTempFile, getFilename());
     }
 }
 
