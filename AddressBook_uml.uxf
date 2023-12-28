@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>9</x>
-      <y>0</y>
+      <x>603</x>
+      <y>18</y>
       <w>396</w>
-      <h>207</h>
+      <h>171</h>
     </coordinates>
     <panel_attributes>AddressBook
 --
@@ -27,10 +27,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>612</x>
-      <y>0</y>
-      <w>189</w>
-      <h>180</h>
+      <x>837</x>
+      <y>405</y>
+      <w>198</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>User
 --
@@ -43,10 +43,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>495</x>
-      <y>216</y>
+      <x>81</x>
+      <y>225</y>
       <w>306</w>
-      <h>261</h>
+      <h>252</h>
     </coordinates>
     <panel_attributes>UserManager
 --
@@ -71,10 +71,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>846</x>
-      <y>216</y>
+      <x>1134</x>
+      <y>225</y>
       <w>288</w>
-      <h>261</h>
+      <h>288</h>
     </coordinates>
     <panel_attributes>ContactManager
 --
@@ -85,22 +85,29 @@
 + ContactsManager()
 
 + addContact() : void
++ searchByFirstName() : void
++ searchBySurname() : void
 + showAllContacts : void
++ deleteContact() : void
++ editContact() : void
 
-- enterNewContactData() : Contact</panel_attributes>
+- enterNewContactData() : Contact
+- showNumberOfSearchedContacts() : void
+- showContactData() : void
+- enterSelectedContactId() : Integer
+- selectAnOptionFromEditMenu() : Char</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>387</x>
-      <y>531</y>
+      <x>18</x>
+      <y>648</y>
       <w>414</w>
-      <h>261</h>
+      <h>162</h>
     </coordinates>
     <panel_attributes>UsersFile
 --
-- USERS_FILENAME : String
 --
 + UsersFile()
 
@@ -108,7 +115,6 @@
 + loadUsersFromFile() : vector &lt;User&gt;
 + writeAllUsersInFile() : void
 
-- checkIfFileIsEmpty() : Bool
 - changeUserDataToLinesWithDataSeparatedVerticalDashes() : String
 - readUserData() : User</panel_attributes>
     <additional_attributes/>
@@ -116,10 +122,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>9</x>
-      <y>234</y>
+      <x>603</x>
+      <y>216</y>
       <w>396</w>
-      <h>135</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>AuxiliaryMethods
 --
@@ -128,16 +134,17 @@
 + convertStringToInt() : Integer
 + readLine() : String
 + readChar() : Char
++ readInteger() : Integer
 + replaceFirstLetterToUpperCaseAndOtherToLowerCase() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>846</x>
-      <y>0</y>
+      <x>558</x>
+      <y>405</y>
       <w>198</w>
-      <h>180</h>
+      <h>153</h>
     </coordinates>
     <panel_attributes>Contact
 --
@@ -155,27 +162,113 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>846</x>
-      <y>531</y>
+      <x>1062</x>
+      <y>639</y>
       <w>432</w>
-      <h>261</h>
+      <h>270</h>
     </coordinates>
     <panel_attributes>ContactsFile
 --
-- CONTACTS_FILENAME : String
 - lastContactId : Integer
 --
 + ContactsFile()
 
 + writeNewContactInFile() : void
 + loadContactsFromFile() : vector &lt;Contact&gt;
++ updateContactDataInFile() : void
++ deleteSelectedLineInFile() : void
 
-- checkIfFileIsEmpty() : Bool
 - changeContactDataToLinesWithDataSeparatedVerticalDashes() : String
 - readNumber() : String
 - readContactData() : Contact
 - readUserIdFromDataSeparatedVerticalDashes : Integer
-- readContactIdFromDataSeparatedVerticalDashes : Integer</panel_attributes>
+- readContactIdFromDataSeparatedVerticalDashes : Integer
+- readLastContactIdFromFile() : void
+- deleteFile() : void
+- renameFile() : void</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>666</x>
+      <y>648</y>
+      <w>189</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>TextFile
+--
+FILENAME : String
+--
++ TextFile()
+
++ checkIfFileIsEmpty() : Bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1260</x>
+      <y>504</y>
+      <w>27</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>468</y>
+      <w>27</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>225</x>
+      <y>81</y>
+      <w>396</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>420.0;10.0;10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>81</y>
+      <w>297</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;310.0;10.0;310.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>423</x>
+      <y>702</y>
+      <w>261</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>702</y>
+      <w>234</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
   </element>
 </diagram>
