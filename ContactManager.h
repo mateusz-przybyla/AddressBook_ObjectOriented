@@ -18,6 +18,7 @@ class ContactManager
     Contact enterNewContactData();
     void showNumberOfSearchedContacts(int numberOfContacts);
     void showContactData(Contact contact);
+    int enterSelectedContactId();
     char selectAnOptionFromEditMenu();
 
 public:

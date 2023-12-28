@@ -156,3 +156,56 @@ string ContactsFile::readNumber(string text, int signPosition)
     }
     return number;
 }
+
+void ContactsFile::updateContactDataInFile(Contact contact)
+{
+    fstream readTextFile, tempTextFile;
+    string readLine  = "", nameOfContactsTempFile = "contacts_temp.txt";
+    int numberOfReadLine = 1, beginingPositionOfContactId = 0;
+
+    readTextFile.open(CONTACTS_FILENAME.c_str(), ios::in);
+    tempTextFile.open(nameOfContactsTempFile.c_str(), ios::out | ios::app);
+
+    if (readTextFile.good())
+    {
+        while (getline(readTextFile, readLine))
+        {
+            if (contact.getId() == AuxiliaryMethods::convertStringToInt(readNumber(readLine, beginingPositionOfContactId)))
+            {
+                if (contact.getId() == 1)
+                    tempTextFile << changeContactDataToLinesWithDataSeparatedVerticalDashes(contact);
+                else if (contact.getId() > 1)
+                    tempTextFile << endl << changeContactDataToLinesWithDataSeparatedVerticalDashes(contact);
+
+                cout << endl << "Data have been updated." << endl << endl;
+            }
+            else
+            {
+                if (numberOfReadLine == 1)
+                    tempTextFile << readLine;
+                else if (numberOfReadLine > 1)
+                    tempTextFile << endl << readLine;
+            }
+            numberOfReadLine++;
+        }
+        readTextFile.close();
+        tempTextFile.close();
+
+        deleteFile(CONTACTS_FILENAME);
+        renameFile(nameOfContactsTempFile, CONTACTS_FILENAME);
+    }
+}
+
+void ContactsFile::deleteFile(string filenameWithExtention)
+{
+    if (remove(filenameWithExtention.c_str()) == 0) {}
+    else
+        cout << "Failed to delete file." << filenameWithExtention << endl;
+}
+
+void ContactsFile::renameFile(string oldName, string newName)
+{
+    if (rename(oldName.c_str(), newName.c_str()) == 0) {}
+    else
+        cout << "Failed to rename file." << oldName << endl;
+}

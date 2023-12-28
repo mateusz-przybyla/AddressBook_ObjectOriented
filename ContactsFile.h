@@ -21,14 +21,18 @@ class ContactsFile
     int readUserIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes);
     int readContactIdFromDataSeparatedVerticalDashes(string contactDataSeparatedVerticalDashes);
     string readNumber(string text, int signPosition);
+    void deleteFile(string filenameWithExtention);
+    void renameFile(string oldName, string newName);
 
 public:
-    ContactsFile(string contactsFilename) : CONTACTS_FILENAME(contactsFilename) {
+    ContactsFile(string contactsFilename) : CONTACTS_FILENAME(contactsFilename)
+    {
         lastContactId = 0;
     };
 
     bool writeNewContactInFile(Contact contact);
     vector <Contact> loadContactsFromFile(int loggedInUserId);
+    void updateContactDataInFile(Contact contact);
 
     int getLastContactId();
 };

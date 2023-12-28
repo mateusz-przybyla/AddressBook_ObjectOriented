@@ -151,7 +151,7 @@ void ContactManager::showAllContacts()
     system("pause");
 }
 
-int enterSelectedContactId()
+int ContactManager::enterSelectedContactId()
 {
     int idOfSelectedContact = 0;
     cout << "Podaj numer ID Adresata: ";
@@ -163,7 +163,7 @@ char ContactManager::selectAnOptionFromEditMenu()
 {
     char choice;
 
-    cout << endl << "   >>> EDIT MENU <<<" << endl;
+    cout << endl << "     >>> EDIT MENU <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "Contact details for editing: " << endl;
     cout << "1 - First name" << endl;
@@ -201,29 +201,29 @@ void ContactManager::editContact()
             case '1':
                 cout << "Enter new first name: ";
                 contacts[i].setFirstName(AuxiliaryMethods::readLine());
-                contacts[i].getFirstName() = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(contacts[i].getFirstName());
-                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                contacts[i].setFirstName(AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(contacts[i].getFirstName()));
+                contactsFile.updateContactDataInFile(contacts[i]);
                 break;
             case '2':
                 cout << "Enter new surname: ";
                 contacts[i].setSurname(AuxiliaryMethods::readLine());
-                contacts[i].getSurname() = AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(contacts[i].getSurname());
-                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                contacts[i].setSurname(AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(contacts[i].getSurname()));
+                contactsFile.updateContactDataInFile(contacts[i]);
                 break;
             case '3':
                 cout << "Enter new phone number: ";
                 contacts[i].setPhoneNumber(AuxiliaryMethods::readLine());
-                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                contactsFile.updateContactDataInFile(contacts[i]);
                 break;
             case '4':
                 cout << "Enter new email: ";
                 contacts[i].setEmail(AuxiliaryMethods::readLine());
-                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                contactsFile.updateContactDataInFile(contacts[i]);
                 break;
             case '5':
                 cout << "Enter new address: ";
                 contacts[i].setAddress(AuxiliaryMethods::readLine());
-                //zaktualizujDaneWybranegoAdresata(contacts[i], contactIdToBeEdited);
+                contactsFile.updateContactDataInFile(contacts[i]);
                 break;
             case '6':
                 cout << endl << "Back to user menu." << endl << endl;
