@@ -157,11 +157,66 @@ string ContactsFile::readNumber(string text, int signPosition)
     return number;
 }
 
+void ContactsFile::deleteSelectedLineInFile(int contactIdToBeDeleted)
+{
+    fstream readTextFile, tempTextFile;
+    string readLine = "", nameOfContactsTempFile = "contacts_temp.txt";
+    int numberOfReadLine = 1;
+
+    readTextFile.open(CONTACTS_FILENAME.c_str(), ios::in);
+    tempTextFile.open(nameOfContactsTempFile.c_str(), ios::out | ios::app);
+
+    if (readTextFile.good() && contactIdToBeDeleted != 0)
+    {
+        while (getline(readTextFile, readLine))
+        {
+            if (contactIdToBeDeleted == readContactIdFromDataSeparatedVerticalDashes(readLine)) {}
+            else if (numberOfReadLine == 1 && numberOfReadLine != contactIdToBeDeleted)
+                tempTextFile << readLine;
+            else if (numberOfReadLine == 2 && contactIdToBeDeleted == 1)
+                tempTextFile << readLine;
+            else if (numberOfReadLine > 2 && contactIdToBeDeleted == 1)
+                tempTextFile << endl << readLine;
+            else if (numberOfReadLine > 1 && contactIdToBeDeleted != 1)
+                tempTextFile << endl << readLine;
+            numberOfReadLine++;
+        }
+        readTextFile.close();
+        tempTextFile.close();
+
+        deleteFile(CONTACTS_FILENAME);
+        renameFile(nameOfContactsTempFile, CONTACTS_FILENAME);
+    }
+
+    if (contactIdToBeDeleted == lastContactId)
+        readLastContactIdFromFile();
+}
+
+void ContactsFile::readLastContactIdFromFile()
+{
+    string contactDataSeparatedVerticalDashes = "";
+    string lastContactDataInFile = "";
+    fstream textFile;
+    textFile.open(CONTACTS_FILENAME.c_str(), ios::in);
+
+    if (textFile.good())
+    {
+        while (getline(textFile, contactDataSeparatedVerticalDashes)) {}
+            lastContactDataInFile = contactDataSeparatedVerticalDashes;
+            textFile.close();
+    }
+
+    if (lastContactDataInFile != "")
+        lastContactId = readContactIdFromDataSeparatedVerticalDashes(lastContactDataInFile);
+    else
+        lastContactId = 0;
+}
+
 void ContactsFile::updateContactDataInFile(Contact contact)
 {
     fstream readTextFile, tempTextFile;
     string readLine  = "", nameOfContactsTempFile = "contacts_temp.txt";
-    int numberOfReadLine = 1, beginingPositionOfContactId = 0;
+    int numberOfReadLine = 1;
 
     readTextFile.open(CONTACTS_FILENAME.c_str(), ios::in);
     tempTextFile.open(nameOfContactsTempFile.c_str(), ios::out | ios::app);
@@ -170,14 +225,14 @@ void ContactsFile::updateContactDataInFile(Contact contact)
     {
         while (getline(readTextFile, readLine))
         {
-            if (contact.getId() == AuxiliaryMethods::convertStringToInt(readNumber(readLine, beginingPositionOfContactId)))
+            if (contact.getId() == readContactIdFromDataSeparatedVerticalDashes(readLine))
             {
                 if (contact.getId() == 1)
                     tempTextFile << changeContactDataToLinesWithDataSeparatedVerticalDashes(contact);
                 else if (contact.getId() > 1)
                     tempTextFile << endl << changeContactDataToLinesWithDataSeparatedVerticalDashes(contact);
 
-                cout << endl << "Data have been updated." << endl << endl;
+                cout << endl << "Data was updated." << endl << endl;
             }
             else
             {
