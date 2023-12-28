@@ -14,6 +14,7 @@ public:
     static int convertStringToInt(string number);
     static string readLine();
     static char readChar();
+    static int readInteger();
     static string replaceFirstLetterToUpperCaseAndOtherToLowerCase(string text);
 };
 

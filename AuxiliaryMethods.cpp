@@ -43,6 +43,23 @@ char AuxiliaryMethods::readChar()
     return character;
 }
 
+int AuxiliaryMethods::readInteger()
+{
+    string input = "";
+    int number = 0;
+
+    while (true)
+    {
+        getline(cin, input);
+
+        stringstream myStream(input);
+        if (myStream >> number)
+            break;
+        cout << "It is not a number. Type again. " << endl;
+    }
+    return number;
+}
+
 string AuxiliaryMethods::replaceFirstLetterToUpperCaseAndOtherToLowerCase(string text)
 {
     if (!text.empty())
