@@ -216,7 +216,7 @@ void ContactsFile::updateContactDataInFile(Contact contact)
 {
     fstream readTextFile, tempTextFile;
     string readLine  = "", nameOfContactsTempFile = "contacts_temp.txt";
-    int numberOfReadLine = 1, beginingPositionOfContactId = 0;
+    int numberOfReadLine = 1;
 
     readTextFile.open(CONTACTS_FILENAME.c_str(), ios::in);
     tempTextFile.open(nameOfContactsTempFile.c_str(), ios::out | ios::app);
@@ -225,7 +225,7 @@ void ContactsFile::updateContactDataInFile(Contact contact)
     {
         while (getline(readTextFile, readLine))
         {
-            if (contact.getId() == AuxiliaryMethods::convertStringToInt(readNumber(readLine, beginingPositionOfContactId)))
+            if (contact.getId() == readContactIdFromDataSeparatedVerticalDashes(readLine))
             {
                 if (contact.getId() == 1)
                     tempTextFile << changeContactDataToLinesWithDataSeparatedVerticalDashes(contact);
