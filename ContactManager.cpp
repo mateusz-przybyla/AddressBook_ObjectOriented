@@ -154,7 +154,7 @@ void ContactManager::showAllContacts()
 int ContactManager::enterSelectedContactId()
 {
     int idOfSelectedContact = 0;
-    cout << "Podaj numer ID Adresata: ";
+    cout << "Enter selected contact ID: ";
     idOfSelectedContact  = AuxiliaryMethods::readInteger();
     return idOfSelectedContact;
 }
@@ -179,10 +179,11 @@ void ContactManager::deleteContact()
             choice = AuxiliaryMethods::readChar();
             if (choice == 't')
             {
-                //usunWybranaLinieWPliku(contactIdToBeDeleted);
+                contactsFile.deleteSelectedLineInFile(contactIdToBeDeleted);
                 contacts.erase(itr);
                 cout << endl << endl << "Contact was DELETED." << endl << endl;
                 system("pause");
+                break;
             }
             else
             {
@@ -194,8 +195,8 @@ void ContactManager::deleteContact()
     if (contactFound == false)
     {
         cout << endl << "No contact with that ID on the list." << endl << endl;
+        system("pause");
     }
-    system("pause");
 }
 
 char ContactManager::selectAnOptionFromEditMenu()
