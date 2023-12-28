@@ -7,19 +7,17 @@
 
 #include "User.h"
 #include "AuxiliaryMethods.h"
+#include "TextFile.h"
 
 using namespace std;
 
-class UsersFile
+class UsersFile : public TextFile
 {
-    const string USERS_FILENAME;
-
-    bool checkIfFileIsEmpty(fstream &textFile);
     string changeUserDataToLinesWithDataSeparatedVerticalDashes(User user);
     User readUserData(string userDataSeparatedVerticalDashes);
 
 public:
-    UsersFile(string usersFilename) : USERS_FILENAME(usersFilename) {};
+    UsersFile(string usersFilename) : TextFile(usersFilename) {};
 
     void writeNewUserInFile(User user);
     vector <User> loadUsersFromFile();

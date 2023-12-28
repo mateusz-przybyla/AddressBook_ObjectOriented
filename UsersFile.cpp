@@ -4,13 +4,13 @@ void UsersFile::writeNewUserInFile(User user)
 {
     string userDataLine = "";
     fstream textFile;
-    textFile.open(USERS_FILENAME.c_str(), ios::app);
+    textFile.open(getFilename().c_str(), ios::app);
 
     if (textFile.good())
     {
         userDataLine = changeUserDataToLinesWithDataSeparatedVerticalDashes(user);
 
-        if (checkIfFileIsEmpty(textFile))
+        if (TextFile::checkIfFileIsEmpty(textFile))
         {
             textFile << userDataLine;
         }
@@ -21,19 +21,9 @@ void UsersFile::writeNewUserInFile(User user)
     }
     else
     {
-        cout << "Failed to open a file " << USERS_FILENAME << " and write data." << endl;
+        cout << "Failed to open a file " << getFilename() << " and write data." << endl;
     }
     textFile.close();
-}
-
-bool UsersFile::checkIfFileIsEmpty(fstream &textFile)
-{
-    textFile.seekg(0, ios::end);
-
-    if (textFile.tellg() == 0)
-        return true;
-    else
-        return false;
 }
 
 string UsersFile::changeUserDataToLinesWithDataSeparatedVerticalDashes(User user)
@@ -53,7 +43,7 @@ vector <User> UsersFile::loadUsersFromFile()
     vector <User> users;
     string userDataSeparatedVerticalDashes = "";
     fstream textFile;
-    textFile.open(USERS_FILENAME.c_str(), ios::in);
+    textFile.open(getFilename().c_str(), ios::in);
 
     if (textFile.good())
     {
@@ -105,7 +95,7 @@ void UsersFile::writeAllUsersInFile(vector <User> users)
     string userDataLine = "";
     vector <User>::iterator itrEnd = --users.end();
     fstream textFile;
-    textFile.open(USERS_FILENAME.c_str(), ios::out);
+    textFile.open(getFilename().c_str(), ios::out);
 
     if (textFile.good())
     {
@@ -126,7 +116,7 @@ void UsersFile::writeAllUsersInFile(vector <User> users)
     }
     else
     {
-        cout << "Failed to open a file " << USERS_FILENAME << endl;
+        cout << "Failed to open a file " << getFilename() << endl;
     }
     textFile.close();
 }
