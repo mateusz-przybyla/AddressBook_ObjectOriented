@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
+      <x>600</x>
       <y>32</y>
       <w>352</w>
       <h>152</h>
@@ -27,7 +27,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>56</x>
+      <x>8</x>
       <y>320</y>
       <w>176</w>
       <h>112</h>
@@ -43,7 +43,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
+      <x>232</x>
       <y>208</y>
       <w>272</w>
       <h>224</h>
@@ -71,7 +71,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1096</x>
+      <x>1048</x>
       <y>208</y>
       <w>256</w>
       <h>256</h>
@@ -101,7 +101,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>224</x>
+      <x>176</x>
       <y>592</y>
       <w>368</w>
       <h>144</h>
@@ -122,7 +122,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
+      <x>600</x>
       <y>208</y>
       <w>352</w>
       <h>112</h>
@@ -130,18 +130,18 @@
     <panel_attributes>AuxiliaryMethods
 --
 --
-+ convertIntToString() : String
-+ convertStringToInt() : Integer
-+ readLine() : String
-+ readChar() : Char
-+ readInteger() : Integer
-+ replaceFirstLetterToUpperCaseAndOtherToLowerCase() : String</panel_attributes>
+_+ convertIntToString() : String_
+_+ convertStringToInt() : Integer_
+_+ readLine() : String_
+_+ readChar() : Char_
+_+ readInteger() : Integer_
+_+ replaceFirstLetterToUpperCaseAndOtherToLowerCase() : String_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1408</x>
+      <x>1360</x>
       <y>328</y>
       <w>176</w>
       <h>136</h>
@@ -162,7 +162,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1032</x>
+      <x>984</x>
       <y>584</y>
       <w>384</w>
       <h>240</h>
@@ -191,7 +191,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>704</x>
+      <x>680</x>
       <y>632</y>
       <w>168</w>
       <h>88</h>
@@ -208,7 +208,7 @@ FILENAME : String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1208</x>
+      <x>1160</x>
       <y>456</y>
       <w>24</w>
       <h>144</h>
@@ -219,7 +219,7 @@ FILENAME : String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
+      <x>352</x>
       <y>424</y>
       <w>24</w>
       <h>184</h>
@@ -230,7 +230,7 @@ FILENAME : String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>408</x>
+      <x>360</x>
       <y>88</y>
       <w>256</w>
       <h>136</h>
@@ -241,84 +241,84 @@ FILENAME : String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>992</x>
+      <x>944</x>
       <y>88</y>
       <w>240</w>
       <h>136</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;280.0;10.0;280.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>584</x>
+      <x>536</x>
       <y>680</y>
-      <w>136</w>
+      <w>160</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>864</x>
+      <x>840</x>
       <y>680</y>
-      <w>184</w>
+      <w>160</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;210.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
+      <x>504</x>
       <y>312</y>
       <w>176</w>
       <h>296</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>200.0;10.0;200.0;270.0;10.0;270.0;10.0;350.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
+      <x>880</x>
       <y>312</y>
       <w>144</w>
       <h>288</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;270.0;160.0;270.0;160.0;340.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>992</x>
+      <x>944</x>
       <y>288</y>
       <w>120</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
+      <x>496</x>
       <y>288</y>
       <w>120</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1344</x>
+      <x>1296</x>
       <y>248</y>
       <w>160</w>
       <h>96</h>
@@ -329,7 +329,7 @@ FILENAME : String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>136</x>
+      <x>88</x>
       <y>240</y>
       <w>160</w>
       <h>96</h>
@@ -340,23 +340,23 @@ FILENAME : String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1408</x>
+      <x>1360</x>
       <y>456</y>
       <w>104</w>
       <h>248</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;..</panel_attributes>
     <additional_attributes>10.0;290.0;110.0;290.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>136</x>
+      <x>88</x>
       <y>424</y>
       <w>104</w>
       <h>256</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;..</panel_attributes>
     <additional_attributes>110.0;300.0;10.0;300.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
